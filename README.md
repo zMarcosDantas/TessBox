@@ -25,7 +25,7 @@ I created a server with express that receives a screenshot of the zone of the pa
 
 * The extension is really simple to use. You can click on the icon to use, or use CTRL+Y as shortcut (if you want to change it, go to manifest file and change there).
 * There will be two modes: Tesseract and EasyOCR.
-* I added the most spoken in the world.
+* I added the most spoken languages in the world.
 * For tesseract language models you have to install there: [Tesseract Lang Models](https://github.com/tesseract-ocr/tessdoc/blob/main/Data-Files.md)
 * If you want to replace something of the text after copied, you can use the regex input.
 * You can change the text type aswell (Normal, Lowercase and Uppercase). 
