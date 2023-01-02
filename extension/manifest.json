@@ -1,0 +1,22 @@
+{
+    "name": "zTessBox",
+    "description": "Tesseract Extension to capture text from images or videos.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "commands": {
+      "screenshot": {
+        "suggested_key": {
+          "default": "Ctrl+Y",
+          "mac": "Command+Y"
+        },
+        "description": "Run \"screenshot\" on the current page."
+      }
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions": ["storage", "activeTab", "tabs", "scripting", "clipboardWrite"],
+    "action": {
+        "default_popup": "popup.html"
+    }
+}

@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Righteous&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+        <h3>TessBox</h3>
+    </header>
+    <button id="action" class="disabled">Copy text</button>
+    
+    <label id="modeLabel" for="modeSel">Select Mode</label>
+    <select id="modeSel">
+      <option value="tess">Tesseract</option>
+      <option value="easy">EasyOCR</option>
+    </select>
+
+    <label id="langLabel" for="langSel">Select Language</label>
+    <select id="langSel">
+      <option value="eng">English (Default)</option>
+      <option value="por">Portuguese</option>
+      <option value="spa">Spanish</option>
+      <option value="jpn">Japanese</option>
+      <option value="ara">Arabic</option>
+      <option value="hin">Hindi</option>
+      <option value="fra">French</option>
+      <option value="chi_sim">Simplified Chinese</option>
+      <option value="equ">Equation</option>
+    </select>
+
+    <fieldset id="fieldRegex">
+      <legend for="regexFrom">Regex to Replace on Copied Text</legend>
+      <div id="regexError" class="not-shown">
+        <svg height="16" width="16" style="overflow:visible;enable-background:new 0 0 32 32" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g id="Error_1_"><g id="Error"><circle cx="16" cy="16" id="BG" r="16" style="fill:#D72828;"/><path d="M14.5,25h3v-3h-3V25z M14.5,6v13h3V6H14.5z" id="Exclamatory_x5F_Sign" style="fill:#E6E6E6;"/></g></g></g></svg>
+        <p>Invalid Regex</p>
+      </div>
+      <span>/</span>
+      <input id="regexFrom" type="text" name="replaceRegexFrom" placeholder="From" maxlength="28">
+      <span>/g</span><br>
+      <input id="regexTo" type="text" name="replaceRegexTo"  placeholder="To">
+    </fieldset>
+    
+    
+    <fieldset id="fieldText">
+      <legend>Text Type</legend>
+      <input id="tt_normal" type="radio" name="text_type" value="0"><label class="inline" for="tt_normal">Normal</label>
+      <input id="tt_lc" type="radio" name="text_type" value="1"><label class="inline" for="tt_lc">Lowercase</label>
+      <input id="tt_uc" type="radio" name="text_type" value="2"><label class="inline" for="tt_uc">Uppercase</label>
+    </fieldset>
+
+    <footer>
+      <svg class="child" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      <span class="child">Coded by zMDantas</span>
+    </footer>
+    <script src="content_script.js"></script>
+  </body>
+</html>
