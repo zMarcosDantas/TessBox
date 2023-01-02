@@ -1,5 +1,5 @@
 
-var overlay = document.createElement('div');
+let overlay = document.createElement('div');
 overlay.id = 'overlay-mdTess';
 overlay.style = 'display: block; position: fixed; width: 100%; height: 100%; left: 0; top: 0; background-color: rgba(0,0,0,0.0); z-index:2147483647;';
 
@@ -17,7 +17,7 @@ if(!document.getElementById('status-mdTess')) {
 barText.innerText = "Select the area you want to copy the text"
 barText.style = 'font-size: 16px; color: white; margin: 0;'
 
-var box = document.createElement('div');
+let box = document.createElement('div');
 box.id = 'box-mdTess';
 box.style = 'display:block; position:fixed; width:0px; height:0px; left:0; top:0;border:3px dashed #672dd3; background-color: rgba(255,255,255/*34,180,177*/, 0.1); /*box-shadow: 1px 1px 100px #22b4b1;*/ z-index:2147483647;';
 
@@ -26,7 +26,7 @@ document.body.appendChild(overlay);
 
 document.body.style.cursor = 'crosshair';
 
-const mdControl = {
+let mdControl = {
     moving: false,
     x: 0,
     y: 0,
@@ -38,7 +38,7 @@ const mdControl = {
     yF: 0,
 }
 
-const mdDown = (ev) => {
+let mdDown = (ev) => {
     mdControl.moving = true;
     
     mdControl.xI   = ev.clientX;
@@ -47,7 +47,7 @@ const mdDown = (ev) => {
     box.style.top  = mdControl.yI + 'px';
 }
 
-const mdMove = (ev) => { // box logic
+var mdMove = (ev) => { // box logic
     if(mdControl.moving) {
 
         mdControl.xF = ev.clientX;
@@ -77,7 +77,7 @@ const mdMove = (ev) => { // box logic
     }
 }
 
-const timeout = function(time) {
+let timeout = function(time) {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(true);
@@ -85,7 +85,7 @@ const timeout = function(time) {
     })
 }
 
-const mdUp = async (ev) => {
+let mdUp = async (ev) => {
     mdControl.moving = false;
     await timeout(200);
     
@@ -122,7 +122,7 @@ document.body.addEventListener('mousemove', mdMove)
 
 document.body.addEventListener('mouseup', mdUp);
 
-const finishAndStop = (croppedImage) => {
+let finishAndStop = (croppedImage) => {
     document.body.style.cursor = '';
     document.body.removeEventListener('mousedown', mdDown)
     document.body.removeEventListener('mousemove', mdMove)
@@ -144,7 +144,7 @@ const finishAndStop = (croppedImage) => {
     });
 }
 
-const grabRegex = () => {
+let grabRegex = () => {
     return new Promise((resolve,reject) => {
         chrome.storage.local.get(['regex'], function(result) {
             if(result.regex) {
@@ -157,7 +157,7 @@ const grabRegex = () => {
     })
 }
 
-const grabTextType = () => {
+let grabTextType = () => {
     return new Promise((resolve, reject) => {
         chrome.storage.local.get(['textType'], function(result) {
             if(result.textType) {
@@ -170,7 +170,7 @@ const grabTextType = () => {
     });
 }
 
-const pageIsFocused = () => {
+let pageIsFocused = () => {
     return new Promise(resolve => {
         let focusInterval = setInterval(() => {
             if(document.hasFocus()) {
@@ -187,7 +187,7 @@ const pageIsFocused = () => {
     })
 }
 
-const copyToClipBoard = async(text) => {
+let copyToClipBoard = async(text) => {
 
     try {
         let regex = await grabRegex();
@@ -226,7 +226,7 @@ const copyToClipBoard = async(text) => {
     
 }
 
-const showStatus = async (text, status, err) => {
+let showStatus = async (text, status, err) => {
     if(status) {
         console.log("Text successfully copied!");
         barText.innerText = `Text copied! - ${text.split(" ")[0].replace(/\r|\n/g, "")}...`
