@@ -1,5 +1,5 @@
 
-let overlay = document.createElement('div');
+var overlay = document.createElement('div');
 overlay.id = 'overlay-mdTess';
 overlay.style = 'display: block; position: fixed; width: 100%; height: 100%; left: 0; top: 0; background-color: rgba(0,0,0,0.0); z-index:2147483647;';
 
@@ -17,7 +17,7 @@ if(!document.getElementById('status-mdTess')) {
 barText.innerText = "Select the area you want to copy the text"
 barText.style = 'font-size: 16px; color: white; margin: 0;'
 
-let box = document.createElement('div');
+var box = document.createElement('div');
 box.id = 'box-mdTess';
 box.style = 'display:block; position:fixed; width:0px; height:0px; left:0; top:0;border:3px dashed #672dd3; background-color: rgba(255,255,255/*34,180,177*/, 0.1); /*box-shadow: 1px 1px 100px #22b4b1;*/ z-index:2147483647;';
 
@@ -26,7 +26,7 @@ document.body.appendChild(overlay);
 
 document.body.style.cursor = 'crosshair';
 
-let mdControl = {
+var mdControl = {
     moving: false,
     x: 0,
     y: 0,
@@ -38,7 +38,7 @@ let mdControl = {
     yF: 0,
 }
 
-let mdDown = (ev) => {
+var mdDown = (ev) => {
     mdControl.moving = true;
     
     mdControl.xI   = ev.clientX;
@@ -77,7 +77,7 @@ var mdMove = (ev) => { // box logic
     }
 }
 
-let timeout = function(time) {
+var timeout = function(time) {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(true);
@@ -85,7 +85,7 @@ let timeout = function(time) {
     })
 }
 
-let mdUp = async (ev) => {
+var mdUp = async (ev) => {
     mdControl.moving = false;
     await timeout(200);
     
@@ -122,7 +122,7 @@ document.body.addEventListener('mousemove', mdMove)
 
 document.body.addEventListener('mouseup', mdUp);
 
-let finishAndStop = (croppedImage) => {
+var finishAndStop = (croppedImage) => {
     document.body.style.cursor = '';
     document.body.removeEventListener('mousedown', mdDown)
     document.body.removeEventListener('mousemove', mdMove)
@@ -144,7 +144,7 @@ let finishAndStop = (croppedImage) => {
     });
 }
 
-let grabRegex = () => {
+var grabRegex = () => {
     return new Promise((resolve,reject) => {
         chrome.storage.local.get(['regex'], function(result) {
             if(result.regex) {
@@ -157,7 +157,7 @@ let grabRegex = () => {
     })
 }
 
-let grabTextType = () => {
+var grabTextType = () => {
     return new Promise((resolve, reject) => {
         chrome.storage.local.get(['textType'], function(result) {
             if(result.textType) {
@@ -170,7 +170,7 @@ let grabTextType = () => {
     });
 }
 
-let pageIsFocused = () => {
+var pageIsFocused = () => {
     return new Promise(resolve => {
         let focusInterval = setInterval(() => {
             if(document.hasFocus()) {
@@ -187,7 +187,7 @@ let pageIsFocused = () => {
     })
 }
 
-let copyToClipBoard = async(text) => {
+var copyToClipBoard = async(text) => {
 
     try {
         let regex = await grabRegex();
@@ -226,7 +226,7 @@ let copyToClipBoard = async(text) => {
     
 }
 
-let showStatus = async (text, status, err) => {
+var showStatus = async (text, status, err) => {
     if(status) {
         console.log("Text successfully copied!");
         barText.innerText = `Text copied! - ${text.split(" ")[0].replace(/\r|\n/g, "")}...`
